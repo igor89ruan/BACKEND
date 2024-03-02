@@ -13,6 +13,7 @@ export default function conectar() {
             host: 'localhost',
             user: 'root', //não é recomendado usar o super usuario
             password: '',
+            port: 3306,
             database: 'backend',
             waitForConnections: true,
             connectionLimit: 10,
