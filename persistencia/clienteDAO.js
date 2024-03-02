@@ -55,8 +55,8 @@ export default class clienteDao {
             await conexao.execute(sql,cliente.codigo);
         }
     }
-
-    async onsultar(termoDePesquisa){
+    // termo de pesquisa pode ser o codigo do cliente ou ainda o nome
+    async consultar(termoDePesquisa){
         if (termoDePesquisa === undefined){
             termoDePesquisa = "";
         }
@@ -69,5 +69,23 @@ export default class clienteDao {
 
         const conexao = await conectar();
         const [registros] = await conexao.execute(sql,[termoDePesquisa]);
+        //utilizar os registros encontrados para criar novos objetos do tipo cliente
+
+        let listaClientes = [];
+        for (const registro of registros){
+            const cliente = new Cliente(
+                registro.codigo,
+                registro.cpf,
+                registro.nome,
+                registro.endereco,
+                registro.bairro,
+                registro.cidade,
+                registro.estado,
+                registro.telefone,
+                registro.email
+            );
+            listaClientes.push(cliente);
+        }
+        return listaClientes;
     }
 }
