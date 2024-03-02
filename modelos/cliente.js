@@ -2,7 +2,7 @@
 // Em orientecao a objetos um classe possui metodos e atributos
 // atributos sao caracteristicas de um objeto
 // metodos sao as acoes que um objeto pode executar
-
+import clienteDAO from "../persistencia/clienteDAO";
 export default class Cliente {
     // atributos privados
     // somente por meio de metodos publicos e que podemos alterar os atributos
@@ -102,11 +102,23 @@ export default class Cliente {
 
     // como armazenar os clinetes no banco de dados ?
 
-    gravar(){}
+    async gravar(){
+        const dao = new clienteDAO();
+        await dao.gravar(this); // this pode ser compreendido com a seguinte expresão: grave a min mesmo
+    }
 
-    atualizar(){}
+    async atualizar(){
+        const dao = new clienteDAO();
+        await dao.atualizar(this);
+    }
 
-    excluir(){}
+    async excluir(){
+        const dao = new clienteDAO();
+        await dao.excluir(this);
+    }
 
-    consultar(termoDePesquisa){}
+    async consultar(termoDePesquisa){
+        const dao = new clienteDAO();
+        return await dao.consultar(termoDePesquisa); 
+    }
 }
