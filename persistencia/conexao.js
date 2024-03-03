@@ -5,7 +5,7 @@ import mysql from  'mysql2/promise';
 // não é o banco de dados e sim se comunica com um banco de dados que pode
 // reponder de imediato, demorar para responder ou numca responder
 // pos isso vamos usar o async e o await
-export default function conectar() {
+export default async function conectar() {
     if (global.pool !== undefined) {
         return await global.pool.getConnection();
     } else {

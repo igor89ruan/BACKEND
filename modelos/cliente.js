@@ -2,8 +2,8 @@
 // Em orientecao a objetos um classe possui metodos e atributos
 // atributos sao caracteristicas de um objeto
 // metodos sao as acoes que um objeto pode executar
-import clienteDAO from "../persistencia/clienteDAO";
-export default class Cliente {
+import clienteDAO from "../persistencia/clienteDAO.js";
+export default class cliente {
     // atributos privados
     // somente por meio de metodos publicos e que podemos alterar os atributos
     // em javascript definidos  privados usando
@@ -120,5 +120,24 @@ export default class Cliente {
     async consultar(termoDePesquisa){
         const dao = new clienteDAO();
         return await dao.consultar(termoDePesquisa); 
+    }
+
+    //override do metodo toString da classe pai obejto
+    toString() {
+        return `Cliente = Codigo: ${this.#codigo}, Nome: ${this.#nome}`
+    }
+
+    toJSON() {
+        return {
+            'codigo': this.#codigo,
+            'cpf' : this.#cpf,
+            'nome' : this.#nome,
+            'endereco' : this.#endereco,
+            'bairro' : this.#bairro,
+            'cidade' : this.#cidade,
+            'estado' : this.#estado,
+            'telefone' : this.#telefone,
+            'email' : this.#email
+        }
     }
 }
