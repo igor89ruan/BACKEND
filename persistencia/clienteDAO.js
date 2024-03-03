@@ -2,7 +2,7 @@
 //Interface para abstrair o acesso aos
 //dados do banco de dados.
 import conectar from "./conexao.js";
-import cliente from "../modelos/cliente.js"
+import Cliente from "../modelos/cliente.js"
 export default class clienteDao {
     async gravar(cliente){
         if (cliente instanceof Cliente){
