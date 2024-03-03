@@ -27,10 +27,10 @@ export default class clienteDao {
     async atualizar(cliente){
         if (cliente instanceof Cliente) {
             const conexao = await conectar();
-            const sql = `UPDATE clientes SET  
+            const sql = `UPDATE cliente SET  
                         nome=?, endereco=?, bairro=?, 
                         cidade=?, estado=?, telefone=?, 
-                        email=?  WHERE codigo=?`;
+                        email=?  WHERE id=?`;
             const parametros = [
                 cliente.nome,
                 cliente.endereco,
@@ -39,7 +39,7 @@ export default class clienteDao {
                 cliente.estado,
                 cliente.telefone,
                 cliente.email,
-                cliente.codigo
+                cliente.id
             ]
             await conexao.execute(sql, parametros);
         }
@@ -48,11 +48,11 @@ export default class clienteDao {
     async excluir(cliente){
         if (cliente instanceof Cliente) {
             const conexao = await conectar();
-            const sql = 'DELETE FROM clientes WHERE codigo=?';
+            const sql = 'DELETE FROM cliente WHERE id=?';
             const  parametros = [
                 cliente.codigo
             ];
-            await conexao.execute(sql,cliente.codigo);
+            await conexao.execute(sql, parametros);
         }
     }
     // termo de pesquisa pode ser o codigo do cliente ou ainda o nome
@@ -62,9 +62,10 @@ export default class clienteDao {
         }
         let sql ="";
         if (isNaN(termoDePesquisa)){  //termo de pesquisa não é um numero
-            sql = `SELECT * FROM cleinte WHERE nome LIKE '%?%'`        
+            sql = `SELECT * FROM cliente WHERE nome LIKE ?`;
+            termoDePesquisa = `%${termoDePesquisa}%`;        
         } else{
-            sql = `SELECT * FROM cleinte WHERE codigo = ?`;
+            sql = `SELECT * FROM cliente WHERE id= ?`;
         }
 
         const conexao = await conectar();
@@ -74,7 +75,7 @@ export default class clienteDao {
         let listaClientes = [];
         for (const registro of registros){
             const cliente = new Cliente(
-                registro.codigo,
+                registro.id,
                 registro.cpf,
                 registro.nome,
                 registro.endereco,
