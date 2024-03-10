@@ -4,10 +4,10 @@
 // dominio da aplicação endpoint
 
 import {Router} from "express";
-import ClienteCTRL from "../controles/clienteCTRL";
+import clienteCTRL from "../controles/clienteCTRL.js";
 
 const rotaCliente = new Router();
-const cliCTRL = new ClienteCTRL();
+const cliCTRL = new clienteCTRL();
 
 rotaCliente
 .get('/:termo', cliCTRL.consultar)  // Atribuindo a função consultar como parametro do que executar quando receber um metodo GET na rota

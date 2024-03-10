@@ -6,25 +6,26 @@
     "type": "module",
     "scripts": {
         "start": "node index.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/igor89ruan/BACKEND.git"
+        "type": "git",
+        "url": "git+https://github.com/igor89ruan/BACKEND.git"
     },
     "keywords": [
-      "backend",
-      "aula",
-      "programação",
-      "internet"
+        "backend",
+        "aula",
+        "programação",
+        "internet"
     ],
     "author": "igor ruan",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/igor89ruan/BACKEND/issues"
+        "url": "https://github.com/igor89ruan/BACKEND/issues"
     },
     "homepage": "https://github.com/igor89ruan/BACKEND#readme",
     "dependencies": {
-      "mysql2": "^3.9.1"
+        "express": "^4.18.3",
+        "mysql2": "^3.9.1"
     }
-  }
+}

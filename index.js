@@ -1,4 +1,4 @@
-import cliente from './modelos/cliente.js';
+
 import express from "express";
 import rotaCliente from './rotas/rotasCliente.js';
 
