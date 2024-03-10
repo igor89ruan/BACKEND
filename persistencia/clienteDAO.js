@@ -60,7 +60,7 @@ export default class clienteDao {
         if (termoDePesquisa === undefined){
             termoDePesquisa = "";
         }
-        let sql ="";
+        let sql =""
         if (isNaN(termoDePesquisa)){  //termo de pesquisa não é um numero
             sql = `SELECT * FROM cliente WHERE nome LIKE ?`;
             termoDePesquisa = `%${termoDePesquisa}%`;        

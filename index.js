@@ -1,6 +1,9 @@
 import cliente from './modelos/cliente.js';
+import express from "express";
+import rotaCliente from './rotas/rotasCliente.js';
 
 //todas as linhas desse progrma são executadas de forma assincroma
+/*
 const Cliente = new cliente(2,
     "123.456.789-10",
     "atualizou",
@@ -11,7 +14,7 @@ const Cliente = new cliente(2,
     "(11) 99995-6789",
     "rogerio@email.com"
     );
-
+*/
 //console.log(Cliente.toJSON());
 
 //nos metodos assincronos é preciso manipular as promessas (promises)
@@ -35,11 +38,11 @@ const Cliente = new cliente(2,
 }).catch(function (erro) {
     console.log(erro.message);
 });*/
-
+/*
 const clienteQQ = new cliente();
 
 
-clienteQQ.consultar('Ana Maria').then((listaClientes)=>{
+clienteQQ.consultar(1).then((listaClientes)=>{
     console.log("Clientes encontrados: " + listaClientes.length);
     for (const cliente of listaClientes){
         console.log(cliente.toJSON());
@@ -48,3 +51,19 @@ clienteQQ.consultar('Ana Maria').then((listaClientes)=>{
     console.log("Não foi possivel consultar o cliente: ", erro);
 });
 
+*/
+
+//////////////////////////////////////////////////////////////////////////////////
+
+const host = '0.0.0.0'; //IP genérico que representa todas as interfaces (placas de rede)
+const porta = 3000; // Sempre utilize portas com valor maior que 1024
+
+const app = express();
+
+app.use(express.json()); //Permite ler dados enviados no formato JSON
+app.use(express.urlencoded({extended: true})); // Permite ler dados enviados pelo metodo POST em formulário, como por exemplo os campos do formulário 
+
+app.use('/clientes', rotaCliente);
+app.listen(porta, host, () => {
+    console.log(`Servidor executando em http://${host}:${porta}`);
+});
