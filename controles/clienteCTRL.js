@@ -1,4 +1,4 @@
-import cliente from '../modelos/cliente.js';
+import Cliente from '../modelos/cliente.js';
 
 export default class ClienteCTRL {
     // Esta classe te´ra a responsabilidade de traduzir pedidos HTTP em comandos internos da aplicação
@@ -27,7 +27,7 @@ export default class ClienteCTRL {
 
             // pseudo validaão nos dados
             if(cpf && nome && endereco && bairro && cidade && estado && telefone && email){
-                const cliente = new cliente(0, cpf, nome, endereco, bairro, cidade, estado, telefone, email);
+                const cliente = new Cliente(0,cpf, nome, endereco, bairro, cidade, estado, telefone, email);
                 cliente.gravar().then(() => {
                     resposta.status(201);
                     resposta.json({
@@ -74,7 +74,7 @@ export default class ClienteCTRL {
             const telefone = dados.telefone;
             const email = dados.email;
             if(codigo && codigo > 0 && cpf && nome && endereco && bairro && cidade && estado && telefone && email){
-            const cliente = new cliente(codigo, cpf, nome, endereco, bairro, cidade, estado, telefone, email);
+            const cliente = new Cliente(codigo, cpf, nome, endereco, bairro, cidade, estado, telefone, email);
             cliente.atualizar().then(() => {
                 resposta.status(200);
                 resposta.json({
@@ -110,7 +110,7 @@ export default class ClienteCTRL {
             
             const codigo = requisicao.params.codigo;
             if(codigo && codigo > 0){
-                const cliente = new cliente(codigo);
+                const cliente = new Cliente(codigo);
                 cliente.excluir().then(() => {
                     resposta.status(200);
                     resposta.json({
@@ -144,7 +144,7 @@ export default class ClienteCTRL {
         resposta.type("application/json");
         if(requisicao.method === 'GET'){
             const termoDePesquisa = requisicao.params.termo;
-            const cliente = new cliente(0);
+            const cliente = new Cliente(0);
             cliente.consultar(termoDePesquisa).then((clientes) => {
                 resposta.status(200);
                 resposta.json(clientes);
